@@ -5,7 +5,7 @@ personalised to teach my 4yo son how to interact with the Terminal, some reading
 
 Games:
 
-1. Guessing number
+1. Guess the number
 2. Give me tons of Cars
 3. Type the emoticon's word (TODO)
 
