@@ -9,9 +9,41 @@ use rand::Rng;
  * 3. Compare
 */
 fn main(){
-    //todo 
-    //1 add list of words
-    //2 modify the flow prompt
+    temperature_converter();
+    //guessing_number();
+}
+
+
+fn temperature_converter(){
+    let mut number_of_cars = String::new();
+    let mut type_of_car = String::new();
+    let mut result = String::new();
+    
+    println!("How many cars do you want to see?");
+
+    io::stdin().read_line(&mut number_of_cars).expect("Fail to read line");  
+    let number_of_cars : u32 = number_of_cars.trim().parse().expect("Not a number");  
+    //check values
+    println!("Do you want to see POLICE cars or a FORMULA 1 cars?");
+    io::stdin().read_line(&mut type_of_car).expect("Fail to read line");
+    let type_of_car = type_of_car.to_lowercase();
+    
+    show_car(number_of_cars, type_of_car);
+}
+
+
+fn show_car(x : u32, car_type : String) {
+    let police = "🚓";
+    let formula1 ="🏎️";
+    let chosen_car = if car_type.trim() == "police" {police} else {formula1};
+    for repetition in 0..x{
+            print!("{}  ",chosen_car);
+    }
+}
+
+
+
+fn guessing_number(){
     let magic_number= rand::thread_rng().gen_range(1..=10); //Random index array
 
     println!("-------------------------------------------------------");
@@ -21,7 +53,6 @@ fn main(){
     println!("-------------------------------------------------------");
 
     loop {
-       
         let mut guess = String::new();
         
         io::stdin() // or std::io::stdin
@@ -41,7 +72,7 @@ fn main(){
             Ordering::Less => println!("RUST dice: NO BIGGER"), //arm 1
             Ordering::Greater => println!("RUST dice: no smaller"), //arm 2
             Ordering::Equal => {
-                println!("SI HAI VINTO!"); 
+                println!("SI H~AI VINTO!"); 
                 println!("The correct number is {magic_number}");
                 println!("-------------------------------------------------------");
                 break;
