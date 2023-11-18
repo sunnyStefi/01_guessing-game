@@ -9,38 +9,53 @@ use rand::Rng;
  * 3. Compare
 */
 fn main(){
-    temperature_converter();
+    give_me_tons_of_cars();
     //guessing_number();
 }
 
 
-fn temperature_converter(){
+fn give_me_tons_of_cars(){
     let mut number_of_cars = String::new();
     let mut type_of_car = String::new();
     let mut result = String::new();
+    let mut parsed_number_of_cars : u32;
     
-    println!("How many cars do you want to see?");
-
-    io::stdin().read_line(&mut number_of_cars).expect("Fail to read line");  
-    let number_of_cars : u32 = number_of_cars.trim().parse().expect("Not a number");  
-    //check values
+    loop{
+        println!("How many cars do you want to see?");
+        io::stdin().read_line(&mut number_of_cars).expect("Fail to read line");  
+        parsed_number_of_cars = match number_of_cars.trim().parse(){ //expect will crash the program
+                Ok(num) => {num},
+                Err(_) => {
+                    println!("{}", number_of_cars);
+                    println!("Type a number");
+                    number_of_cars = String::new();
+                    continue;
+                }
+        };
+        break;
+        
+    }
     println!("Do you want to see POLICE cars or a FORMULA 1 cars?");
     io::stdin().read_line(&mut type_of_car).expect("Fail to read line");
     let type_of_car = type_of_car.to_lowercase();
     
-    show_car(number_of_cars, type_of_car);
+    show_car(parsed_number_of_cars, type_of_car);
 }
 
 
 fn show_car(x : u32, car_type : String) {
     let police = "🚓";
     let formula1 ="🏎️";
-    let chosen_car = if car_type.trim() == "police" {police} else {formula1};
-    for repetition in 0..x{
-            print!("{}  ",chosen_car);
+    let mut chosen_car = "💩";
+    if car_type.trim() == "police" 
+        { chosen_car = police;} 
+    if car_type.trim() == "formula 1" 
+        {chosen_car = formula1;} 
+
+    for repetition in 0..x {
+            print!("{} {}  ",repetition+1, chosen_car);
     }
 }
-
 
 
 fn guessing_number(){
@@ -64,7 +79,7 @@ fn guessing_number(){
         let guess : u32 = match guess.trim().parse(){ //expect will crash the program
             Ok(num) => num,
             Err(_) => {
-                println!("Type a NUMBEEER");
+                println!("Type a NUMBER");
                 continue;
             }
         };
