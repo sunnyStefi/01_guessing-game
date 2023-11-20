@@ -1,10 +1,9 @@
-# Rust Book Summary
+# Rust Book Games
 
-In this program are implemented most of the features present in the Rust Book,
-personalised to teach my 4yo son how to interact with the Terminal, some reading and writing and a bunch of other skills.
+In this program are implemented some of the features present in the Rust Book,
+personalised to teach my 4yo son how to interact with the Terminal.
 
 Games:
-
 1. Guess the number
 2. Give me tons of Cars
 
