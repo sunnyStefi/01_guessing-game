@@ -9,17 +9,23 @@ use rand::Rng;
  * 3. Compare
 */
 fn main(){
+    // count_words();
     give_me_tons_of_cars();
     //guessing_number();
 }
 
 
 fn give_me_tons_of_cars(){
-    let mut number_of_cars = String::new();
-    let mut type_of_car = String::new();
-    let mut result = String::new();
-    let mut parsed_number_of_cars : u32;
     
+    let mut parsed_number_of_cars : u32 = read_from_input_number();
+    let mut type_of_car = read_from_input_string();
+    
+    show_car(parsed_number_of_cars, type_of_car);
+}
+
+fn read_from_input_number () -> u32{
+    let mut number_of_cars = String::new();
+    let mut parsed_number_of_cars: u32;
     loop{
         println!("How many cars do you want to see?");
         io::stdin().read_line(&mut number_of_cars).expect("Fail to read line");  
@@ -27,7 +33,7 @@ fn give_me_tons_of_cars(){
                 Ok(num) => {num},
                 Err(_) => {
                     println!("{}", number_of_cars);
-                    println!("Type a number");
+                    println!("Wrong input");
                     number_of_cars = String::new();
                     continue;
                 }
@@ -35,11 +41,19 @@ fn give_me_tons_of_cars(){
         break;
         
     }
-    println!("Do you want to see POLICE cars or a FORMULA 1 cars?");
-    io::stdin().read_line(&mut type_of_car).expect("Fail to read line");
-    let type_of_car = type_of_car.to_lowercase();
-    
-    show_car(parsed_number_of_cars, type_of_car);
+    parsed_number_of_cars
+}
+
+fn read_from_input_string () -> String {
+   let mut type_of_car = String::new();
+    loop{
+        println!("Do you want to see POLICE cars or a FORMULA 1 cars?");
+        io::stdin().read_line(&mut type_of_car).expect("Fail to read line");  
+        if (type_of_car.to_lowercase().contains("police")||type_of_car.to_lowercase().contains("formula 1")){
+            break;
+        }
+    }
+    type_of_car.to_lowercase()
 }
 
 
@@ -57,6 +71,7 @@ fn show_car(x : u32, car_type : String) {
     }
 }
 
+fn count_words(){}
 
 fn guessing_number(){
     let magic_number= rand::thread_rng().gen_range(1..=10); //Random index array
