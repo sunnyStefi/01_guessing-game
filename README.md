@@ -7,7 +7,6 @@ Games:
 
 1. Guess the number
 2. Give me tons of Cars
-3. Type the emoticon's word (TODO)
 
 ## sources
 
