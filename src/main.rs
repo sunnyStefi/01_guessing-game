@@ -6,10 +6,8 @@ use rand::Rng;
  * @dev Sections:
  * 1. Input from keyboad
  * 2. Generate random number
- * 3. Compare
 */
 fn main(){
-    // count_words();
     give_me_tons_of_cars();
     //guessing_number();
 }
@@ -71,7 +69,6 @@ fn show_car(x : u32, car_type : String) {
     }
 }
 
-fn count_words(){}
 
 fn guessing_number(){
     let magic_number= rand::thread_rng().gen_range(1..=10); //Random index array
